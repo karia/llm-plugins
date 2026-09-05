@@ -1,0 +1,21 @@
+{
+  "name": "third-party-review",
+  "version": "0.1.0",
+  "description": "Have an agent without the implementation context review your pull request, and hand its findings back through a result file.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["code-review", "pull-request", "subagent", "github"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Third Party Review",
+    "shortDescription": "Get a review from an agent that never saw the implementation.",
+    "longDescription": "Reviewing your own work in the session that produced it carries every assumption forward. This hands the pull request to a reviewer that starts cold, gives it nothing but the repository name and the pull request number, and collects the findings in a result file so nothing is posted to GitHub without the author seeing it first.",
+    "developerName": "karia",
+    "category": "Developer Tool",
+    "websiteURL": "https://github.com/karia/llm-plugins"
+  }
+}

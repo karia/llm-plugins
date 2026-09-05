@@ -1,0 +1,12 @@
+{
+  "name": "third-party-review",
+  "version": "0.1.0",
+  "description": "Have an agent without the implementation context review your pull request, and hand its findings back through a result file.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["code-review", "pull-request", "subagent", "github"]
+}
