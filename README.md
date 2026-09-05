@@ -10,6 +10,7 @@ Each plugin ships a single skill. The skills themselves are written in Japanese,
 | --- | --- |
 | `secret-scan-before-push` | Check repository visibility and scan the commits you are about to push for credentials and internal identifiers. |
 | `merged-branch-cleanup` | Return to the default branch and safely delete the local branch and worktree once a pull request is merged. |
+| `third-party-review` | Have an agent without the implementation context review your pull request, and hand its findings back through a result file. |
 
 ## Install
 
