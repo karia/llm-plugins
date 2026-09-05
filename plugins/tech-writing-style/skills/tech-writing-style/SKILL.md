@@ -7,16 +7,6 @@ description: 日本語の技術文書、記事、書籍原稿の文章規範。�
 
 日本語で技術的な原稿（書籍の章、記事、解説文）を書く・推敲するときは、以下に従う。
 
-## 基本規範
-
-整形、段落と論証の構成、論証の厳密さ、読み手の負荷の管理、視点と語り、演出の抑制、LLM っぽい表現の禁止、冗長の排除、読者への誠実さの各規範は `japanese-tech-writing` skill に従う。以降のセクションは、それに対する追加の規範である。
-
-`japanese-tech-writing` が入っていなければ、次で導入する。gist を git リポジトリとして clone するので、以後は同じディレクトリで `git pull` すれば更新に追随できる。
-
-```bash
-git clone https://gist.github.com/fd287c3133457c4fd8f5601d34aa817d.git ~/.claude/skills/japanese-tech-writing
-```
-
 ## 言い回し
 
 - 「AではなくB」と否定から入る構文を使わない。採る側を言い切り、採らなかった選択肢に触れる必要があれば、続く文で理由として述べる。否定された A をいったん頭に入れてから B へ置き換える読み方を強いるため。推敲時は「ではなく」「でなく」で検索し、残っていないか確かめる。
@@ -60,7 +50,7 @@ npx -p textlint -p textlint-rule-preset-jtf-style textlint --no-textlintrc --pre
 - テンプレートがない文書では、重要な内容や要約を先頭に書く。
 - 長い本文をベタ書きせず、見出し（H2以降）でセクション分割する。h3・h4 のサブセクションも積極的に活用し、階層で見通しを良くする。
 - 表・箇条書きでも構造化する。特に前提条件・対象一覧・比較・コストなどの構造化データは表にする。
-- 注釈や短い補足は、Markdownのアラート記法やConfluenceの情報パネルで整理する。これは `japanese-tech-writing` の「整形」にある「本筋から一段外れる補足は脚注に降ろす」に対応し、パネルや展開が脚注の代用になる。
+- 注釈や短い補足は、Markdownのアラート記法やConfluenceの情報パネルで整理する。本筋から一段外れる補足を脚注へ降ろすのと同じ扱いで、パネルや展開が脚注の代用になる。
   - 配置は内容で分ける。前提を先に伝える事前注釈は本文より上に置いてよいが、用語定義など本筋から外れる補足は本文より下に置く。
 - 本文から脱線する詳細は、折りたたみ（Markdownの `<details>` タグ、Confluenceの展開など）に収め、本文全体を短く保つことを意識する。
 
@@ -106,7 +96,16 @@ npx -p textlint -p textlint-rule-preset-jtf-style textlint --no-textlintrc --pre
 - リンク（出典・参照）は本文での参照箇所の直後に置き、読者がその場で辿れるようにする。
 - 末尾に参考文献一覧としてまとめない。ページ内を往復させることになり、末尾の一覧は読まれにくいため。
 
-## AWS 技術文書
+## 併用を推奨するスキル
 
-- AWS系の技術文書（アーキテクチャレビュー、Well-Architectedレビュー、AWS関連のADR等）を扱うときは、Well-Architected系のスキル（`wa-review`・`architecture-decision-record`・`security-assessment`・`cost-optimization-review` など）も併用する。
+次のスキルは、この規範が扱わない範囲を埋める。原稿の性格に合うものがあれば依頼者に薦める。未導入のときは導入の可否を確認し、許可が得られたらインストールまで済ませる。
+
+- **japanese-tech-writing**：整形、段落と論証の構成、論証の厳密さ、読み手の負荷の管理、視点と語り、演出の抑制、LLM っぽい表現の禁止、冗長の排除、読者への誠実さを扱う。日本語の原稿を書くときは常に薦める。gist を git リポジトリとして clone して導入し、以後は同じディレクトリで `git pull` すれば更新に追随できる。
+
+  ```bash
+  git clone https://gist.github.com/fd287c3133457c4fd8f5601d34aa817d.git ~/.claude/skills/japanese-tech-writing
+  ```
+
+- **sanitize-artifacts**：書き上がった成果物に、会話の経緯や指示の言い回し、制約の説明が残っていないかを確認する。推敲の仕上げに薦める。
+- **Well-Architected 系のスキル**（`wa-review`、`architecture-decision-record`、`security-assessment`、`cost-optimization-review` など）：AWS 系の技術文書を扱うときに薦める。アーキテクチャレビュー、Well-Architected レビュー、AWS 関連の ADR が該当する。
 
