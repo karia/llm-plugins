@@ -1,0 +1,21 @@
+{
+  "name": "secret-scan-before-push",
+  "version": "0.1.0",
+  "description": "Check repository visibility and scan the commits you are about to push for credentials and internal identifiers.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["git", "push", "security", "secret-scanning"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Secret Scan Before Push",
+    "shortDescription": "Scan for credentials and internal identifiers before pushing to a public repository.",
+    "longDescription": "Before running git push, confirm whether the target repository is public. If it is, enumerate the commits in the push range, run an automated secret scan, and review the diff by hand for context-dependent leaks such as cloud resource identifiers and internal host names.",
+    "developerName": "karia",
+    "category": "Developer Tool",
+    "websiteURL": "https://github.com/karia/llm-plugins"
+  }
+}

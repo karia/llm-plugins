@@ -1,0 +1,12 @@
+{
+  "name": "secret-scan-before-push",
+  "version": "0.1.0",
+  "description": "Check repository visibility and scan the commits you are about to push for credentials and internal identifiers.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["git", "push", "security", "secret-scanning"]
+}
