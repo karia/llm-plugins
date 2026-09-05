@@ -27,6 +27,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Developer Tool"
+    },
+    {
+      "name": "third-party-review",
+      "source": {
+        "source": "local",
+        "path": "./plugins/third-party-review"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tool"
     }
   ]
 }

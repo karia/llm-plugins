@@ -4,7 +4,7 @@
     "name": "karia"
   },
   "metadata": {
-    "version": "0.2.0"
+    "version": "0.3.0"
   },
   "plugins": [
     {
@@ -20,6 +20,13 @@
       "description": "Return to the default branch and safely delete the local branch and worktree once a pull request is merged.",
       "category": "development",
       "keywords": ["git", "worktree", "branch", "cleanup"]
+    },
+    {
+      "name": "third-party-review",
+      "source": "./plugins/third-party-review",
+      "description": "Have an agent without the implementation context review your pull request, and hand its findings back through a result file.",
+      "category": "development",
+      "keywords": ["code-review", "pull-request", "subagent"]
     }
   ]
 }
