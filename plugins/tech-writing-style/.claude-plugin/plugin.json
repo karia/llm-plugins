@@ -1,0 +1,12 @@
+{
+  "name": "tech-writing-style",
+  "version": "0.1.0",
+  "description": "Writing norms for Japanese technical documents: phrasing, notation, structure, tables, headings, and how to place links.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["writing", "japanese", "documentation", "style-guide"]
+}

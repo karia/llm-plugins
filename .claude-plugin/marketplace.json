@@ -4,7 +4,7 @@
     "name": "karia"
   },
   "metadata": {
-    "version": "0.3.0"
+    "version": "0.4.0"
   },
   "plugins": [
     {
@@ -27,6 +27,13 @@
       "description": "Have an agent without the implementation context review your pull request, and hand its findings back through a result file.",
       "category": "development",
       "keywords": ["code-review", "pull-request", "subagent"]
+    },
+    {
+      "name": "tech-writing-style",
+      "source": "./plugins/tech-writing-style",
+      "description": "Writing norms for Japanese technical documents: phrasing, notation, structure, tables, headings, and how to place links.",
+      "category": "productivity",
+      "keywords": ["writing", "japanese", "documentation", "style-guide"]
     }
   ]
 }
