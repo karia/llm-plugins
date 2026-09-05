@@ -9,6 +9,7 @@ Each plugin ships a single skill. The skills themselves are written in Japanese,
 | Plugin | Description |
 | --- | --- |
 | `secret-scan-before-push` | Check repository visibility and scan the commits you are about to push for credentials and internal identifiers. |
+| `merged-branch-cleanup` | Return to the default branch and safely delete the local branch and worktree once a pull request is merged. |
 
 ## Install
 
@@ -16,14 +17,14 @@ Each plugin ships a single skill. The skills themselves are written in Japanese,
 
 ```
 /plugin marketplace add karia/llm-plugins
-/plugin install secret-scan-before-push@llm-plugins
+/plugin install <plugin>@llm-plugins
 ```
 
 ### Codex CLI
 
 ```
 codex plugin marketplace add karia/llm-plugins
-codex plugin add secret-scan-before-push@llm-plugins
+codex plugin add <plugin>@llm-plugins
 ```
 
 ## Layout

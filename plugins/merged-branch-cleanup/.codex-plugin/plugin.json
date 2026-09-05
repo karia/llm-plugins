@@ -1,0 +1,21 @@
+{
+  "name": "merged-branch-cleanup",
+  "version": "0.1.0",
+  "description": "Return to the default branch and safely delete the local branch and worktree once a pull request is merged.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["git", "worktree", "branch", "cleanup", "pull-request"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Merged Branch Cleanup",
+    "shortDescription": "Clean up the local branch and worktree after a pull request is merged.",
+    "longDescription": "After a pull request is merged, verify the merge, return to the default branch and update it, then delete the merged local branch and its worktree. Deletion is destructive, so each step confirms that the branch is really merged and that no uncommitted work is left behind.",
+    "developerName": "karia",
+    "category": "Developer Tool",
+    "websiteURL": "https://github.com/karia/llm-plugins"
+  }
+}

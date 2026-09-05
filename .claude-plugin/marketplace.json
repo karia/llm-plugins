@@ -4,7 +4,7 @@
     "name": "karia"
   },
   "metadata": {
-    "version": "0.1.0"
+    "version": "0.2.0"
   },
   "plugins": [
     {
@@ -13,6 +13,13 @@
       "description": "Check repository visibility and scan the commits you are about to push for credentials and internal identifiers.",
       "category": "development",
       "keywords": ["git", "push", "security", "secret-scanning"]
+    },
+    {
+      "name": "merged-branch-cleanup",
+      "source": "./plugins/merged-branch-cleanup",
+      "description": "Return to the default branch and safely delete the local branch and worktree once a pull request is merged.",
+      "category": "development",
+      "keywords": ["git", "worktree", "branch", "cleanup"]
     }
   ]
 }

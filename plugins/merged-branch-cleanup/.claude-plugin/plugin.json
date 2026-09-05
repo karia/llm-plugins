@@ -1,0 +1,12 @@
+{
+  "name": "merged-branch-cleanup",
+  "version": "0.1.0",
+  "description": "Return to the default branch and safely delete the local branch and worktree once a pull request is merged.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["git", "worktree", "branch", "cleanup", "pull-request"]
+}

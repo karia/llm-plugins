@@ -15,6 +15,18 @@
         "authentication": "ON_INSTALL"
       },
       "category": "Developer Tool"
+    },
+    {
+      "name": "merged-branch-cleanup",
+      "source": {
+        "source": "local",
+        "path": "./plugins/merged-branch-cleanup"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tool"
     }
   ]
 }
