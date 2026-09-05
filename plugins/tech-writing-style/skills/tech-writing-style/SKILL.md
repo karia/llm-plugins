@@ -107,5 +107,17 @@ npx -p textlint -p textlint-rule-preset-jtf-style textlint --no-textlintrc --pre
   ```
 
 - **sanitize-artifacts**：書き上がった成果物に、会話の経緯や指示の言い回し、制約の説明が残っていないかを確認する。推敲の仕上げに薦める。
-- **Well-Architected 系のスキル**（`wa-review`、`architecture-decision-record`、`security-assessment`、`cost-optimization-review` など）：AWS 系の技術文書を扱うときに薦める。アーキテクチャレビュー、Well-Architected レビュー、AWS 関連の ADR が該当する。
+
+  ```bash
+  claude plugin marketplace add karia/llm-plugins
+  claude plugin install sanitize-artifacts@llm-plugins
+  ```
+
+  Codex では `codex plugin marketplace add karia/llm-plugins` のあと `codex plugin add sanitize-artifacts@llm-plugins` を実行する。
+
+- **Well-Architected 系のスキル**（`wa-review`、`architecture-decision-record`、`security-assessment`、`cost-optimization-review` など）：AWS 系の技術文書を扱うときに薦める。アーキテクチャレビュー、Well-Architected レビュー、AWS 関連の ADR が該当する。配布元は [aws-samples/sample-well-architected-skills-and-steering](https://github.com/aws-samples/sample-well-architected-skills-and-steering) で、同リポジトリの bootstrap で導入する。対応ツールごとに配置先が変わるため、細部は同リポジトリの README に従う。
+
+  ```bash
+  curl -sL https://raw.githubusercontent.com/aws-samples/sample-well-architected-skills-and-steering/main/bootstrap.sh | bash -s -- --tool claude-code
+  ```
 
