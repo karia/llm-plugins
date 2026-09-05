@@ -1,0 +1,20 @@
+{
+  "name": "llm-plugins",
+  "interface": {
+    "displayName": "karia's LLM plugins"
+  },
+  "plugins": [
+    {
+      "name": "secret-scan-before-push",
+      "source": {
+        "source": "local",
+        "path": "./plugins/secret-scan-before-push"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tool"
+    }
+  ]
+}
