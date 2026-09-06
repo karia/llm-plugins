@@ -1,6 +1,6 @@
 ---
 name: secret-scan-before-push
-description: git pushを実行する前に、push先リポジトリがpublicかどうかを確認し、publicなら今回pushするcommitに認証情報や内部IDが含まれていないか確認する。「push」「git push」「force push」など、GitHubへ変更を反映する操作の直前で常に使う。特にリポジトリで新しいbranch/PRを初めて公開する場面で重要（マージ前のPR diffもpublicリポジトリでは全世界から見える）。
+description: publicリポジトリへのpush前に、認証情報や内部IDが含まれていないか確認する。「push」「git push」「force push」など、GitHubへ変更を反映する操作の直前で常に使う。新しいbranch/PRを初めて公開する場面で特に重要。
 ---
 
 # push前のシークレット・内部ID確認
