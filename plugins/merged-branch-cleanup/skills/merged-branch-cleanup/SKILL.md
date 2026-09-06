@@ -1,6 +1,6 @@
 ---
 name: merged-branch-cleanup
-description: PR マージ後の後片付け手順。default branch への復帰・最新化、マージ済み local branch と worktree の安全な削除、最新 default branch への rebase、前提 PR が取り込まれた後の PR description 更新までを行う。「マージしたのでdefault branchに戻って」「masterに戻って」「マージ済みのbranch/worktreeを削除して」「最新のdefault branchを取得してrebaseして」「マージ済みのworktreeディレクトリを削除して」のような依頼で使用する。
+description: PR マージ後の後片付けに使用する。「マージしたのでdefault branchに戻って」「masterに戻って」「マージ済みのbranch/worktreeを削除して」「最新のdefault branchを取得してrebaseして」のような依頼が対象。
 ---
 
 # マージ後の後片付け手順

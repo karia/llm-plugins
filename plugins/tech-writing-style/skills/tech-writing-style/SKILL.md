@@ -1,6 +1,6 @@
 ---
 name: tech-writing-style
-description: 日本語の技術文書、記事、書籍原稿の文章規範。否定から入る言い回しの禁止、文体と表記の統一、日本語と英数字の間のスペース、読者水準、構造化、表と箇条書きの作り方、手順の書き方、見出しの付け方、リンクの置き方を定める。社内技術文書（ADR、Confluence、JIRA、Issue、PR description、Markdown 等）やブログ記事、技術書の章、草稿、解説文を書くとき、または推敲、リライトするときに使用する。
+description: 日本語の技術文書、記事、書籍原稿の文章規範。社内技術文書（ADR、Confluence、JIRA、Issue、PR description、Markdown等）やブログ記事、技術書の章、草稿、解説文を書くとき、または推敲、リライトするときに使用する。
 ---
 
 # 日本語技術文書の文章規範
