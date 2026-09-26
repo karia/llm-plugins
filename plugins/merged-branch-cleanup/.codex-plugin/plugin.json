@@ -1,6 +1,6 @@
 {
   "name": "merged-branch-cleanup",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Return to the default branch and safely delete the local branch and worktree once a pull request is merged.",
   "author": {
     "name": "karia"
