@@ -1,6 +1,6 @@
 {
   "name": "secret-scan-before-push",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Check repository visibility and scan the commits you are about to push for credentials and internal identifiers.",
   "author": {
     "name": "karia"
