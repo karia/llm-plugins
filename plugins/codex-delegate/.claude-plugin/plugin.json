@@ -1,0 +1,12 @@
+{
+  "name": "codex-delegate",
+  "version": "0.1.0",
+  "description": "Delegate implementation or research to Codex CLI in a Herdr pane, then verify the result and resume after usage limits.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["codex", "herdr", "delegation", "agent"]
+}
