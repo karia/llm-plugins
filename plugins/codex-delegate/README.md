@@ -4,4 +4,16 @@ Codex CLI stops in ways that look alike from outside: an `idle` pane can mean th
 
 The skill covers starting Codex in a sibling Herdr pane, handing it a task file, waiting without polling, resuming after a usage limit, sending review findings back to the same agent, and closing the pane afterwards.
 
-It requires running inside [Herdr](https://herdr.dev/) and pairs with the `pr-flow` skill, which prepares the worktree Codex works in and creates the pull request once the work is verified.
+Codex starts in `workspace-write` with the orchestrator committing its changes. `--yolo` removes both approvals and the sandbox, so it is used only when explicitly requested.
+
+## Requirements
+
+- [Herdr](https://herdr.dev/), with the skill running inside a Herdr pane
+- Codex CLI and `jq`
+
+## Related skills
+
+These skills are not part of this plugin. The steps that hand off to them can be followed by hand when they are not installed.
+
+- `pr-flow` prepares the worktree and creates the pull request. It lives outside this marketplace.
+- `third-party-review` and `merged-branch-cleanup` are plugins in this marketplace.
