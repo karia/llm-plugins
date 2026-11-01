@@ -6,4 +6,4 @@ By default the reviewer is a subagent of the requesting session. An external cod
 
 Findings come back in a result file rather than as GitHub comments. A review posted straight to a pull request leaves comments on someone else's work and sends notifications before the author has read a word of it. The result file is written into an Obsidian note where one is available, and under `~/Documents/` otherwise.
 
-The pull request stays in draft from the start of the review until the end. Taking it out of draft is the author's call, and belongs to the `pr-flow` skill.
+The pull request stays in draft from the start of the review until the end. Whether to take it out of draft after that is decided by the `pr-flow` skill.

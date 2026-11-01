@@ -1,6 +1,6 @@
 {
   "name": "third-party-review",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Have an agent without the implementation context review your pull request, and hand its findings back through a result file.",
   "author": {
     "name": "karia"
