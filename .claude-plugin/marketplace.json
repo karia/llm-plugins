@@ -4,7 +4,7 @@
     "name": "karia"
   },
   "metadata": {
-    "version": "0.4.0"
+    "version": "0.5.0"
   },
   "plugins": [
     {
@@ -34,6 +34,13 @@
       "description": "Writing norms for Japanese technical documents: phrasing, notation, structure, tables, headings, and how to place links.",
       "category": "productivity",
       "keywords": ["writing", "japanese", "documentation", "style-guide"]
+    },
+    {
+      "name": "codex-delegate",
+      "source": "./plugins/codex-delegate",
+      "description": "Delegate implementation or research to Codex CLI in a Herdr pane, then verify the result and resume after usage limits.",
+      "category": "development",
+      "keywords": ["codex", "herdr", "delegation", "agent"]
     }
   ]
 }
