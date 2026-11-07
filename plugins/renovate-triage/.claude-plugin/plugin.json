@@ -1,0 +1,12 @@
+{
+  "name": "renovate-triage",
+  "version": "0.1.0",
+  "description": "Triage Renovate dependency updates against the deployed runtime, then approve and merge compatible pull requests one at a time.",
+  "author": {
+    "name": "karia"
+  },
+  "homepage": "https://github.com/karia/llm-plugins",
+  "repository": "https://github.com/karia/llm-plugins",
+  "license": "MIT",
+  "keywords": ["renovate", "dependencies", "pull-request", "triage"]
+}

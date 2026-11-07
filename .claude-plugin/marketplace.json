@@ -4,7 +4,7 @@
     "name": "karia"
   },
   "metadata": {
-    "version": "0.5.0"
+    "version": "0.6.0"
   },
   "plugins": [
     {
@@ -41,6 +41,13 @@
       "description": "Delegate implementation or research to Codex CLI in a Herdr pane, then verify the result and resume after usage limits.",
       "category": "development",
       "keywords": ["codex", "herdr", "delegation", "agent"]
+    },
+    {
+      "name": "renovate-triage",
+      "source": "./plugins/renovate-triage",
+      "description": "Triage Renovate dependency updates against the deployed runtime, then approve and merge compatible pull requests one at a time.",
+      "category": "development",
+      "keywords": ["renovate", "dependencies", "pull-request", "triage"]
     }
   ]
 }
