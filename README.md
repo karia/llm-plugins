@@ -13,6 +13,7 @@ Each plugin ships a single skill. The skills themselves are written in Japanese,
 | `third-party-review` | Have an agent without the implementation context review your pull request, and hand its findings back through a result file. |
 | `tech-writing-style` | Writing norms for Japanese technical documents: phrasing, notation, structure, tables, headings, and how to place links. |
 | `codex-delegate` | Delegate implementation or research to Codex CLI in a Herdr pane, then verify the result and resume after usage limits. |
+| `renovate-triage` | Triage Renovate dependency updates against the deployed runtime, then approve and merge compatible pull requests one at a time. |
 
 ## Install
 
