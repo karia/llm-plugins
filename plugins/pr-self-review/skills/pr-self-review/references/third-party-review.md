@@ -58,7 +58,7 @@ subagentも外部エージェントも使えない場合は、第三者レビュ
 
 結果ファイルは巡ごとに分け、準備で用意した作業用ディレクトリに`round-<巡の番号>.md`の名前で置く。完了検知をパスの存在確認で行うため、パスを確定させてからレビュアーへ渡す。
 
-あわせて、依頼を出す前に2つの値を控える。`git rev-parse HEAD`の値と、次の誤投稿確認のコマンドが返す件数である。
+あわせて、依頼を出す前に3つの値を控える。`git rev-parse HEAD`の値、`git status --short`の出力、次の誤投稿確認のコマンドが返す件数である。
 
 ```bash
 gh pr view <PR番号> --repo <owner>/<repo> --json comments,reviews --jq '{comments: (.comments | length), reviews: (.reviews | length)}'
@@ -110,7 +110,7 @@ test -s <結果ファイルのパス>
 あわせて次の2点を確かめる。
 
 - GitHubへ誤投稿されていないか。依頼前に控えた件数と比べる。増えていたら、増えた分の投稿者と投稿時刻を確かめる。レビュアーによる投稿であれば、持ち越す指摘と同じ扱いで記録し、完了時に報告する。自分では削除しない。
-- 作業ツリーが変更されていないか。`git status --short`と`git rev-parse HEAD`で確かめ、依頼前に控えたHEADと比べる。レビュアーによる変更があれば、`git reset --hard <控えたHEAD>`と`git clean -fd`で依頼前の状態に戻す。
+- 作業ツリーが変更されていないか。`git status --short`と`git rev-parse HEAD`で確かめ、依頼前に控えた値と比べる。HEADが変わっていれば`git reset --hard <控えたHEAD>`で戻す。依頼前の出力に無かった変更だけを取り消し、依頼前からあったファイルには触れない。
 
 subagentに任せた場合は完了通知が届くので、待機の仕掛けはいらない。
 
