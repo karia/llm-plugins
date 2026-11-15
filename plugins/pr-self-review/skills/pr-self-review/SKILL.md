@@ -125,6 +125,8 @@ PRの差分にLLM向けのプロンプトが含まれる場合だけ実行する
 - 開始時のHEADまでのcommitは、依頼者が分けた単位のまま残す。メッセージの名残を直すだけにとどめ、ほかのcommitとまとめない。
 - まとめた後のメッセージは、そのcommitの内容を言い表すものにする。レビューの巡や指摘番号には触れない。
 
+`git rev-list --merges <開始commit>..HEAD`がcommitを1件でも返す場合は、まとめずにpushへ進み、その旨を報告に記す。rebaseはmerge commitを落とし、取り込んだ側のcommitを複製するため。
+
 rebaseは対話エディタを使わずに行う。まとめ方を書いたtodoファイルを作業用ディレクトリに作り、`GIT_SEQUENCE_EDITOR`で差し替える。
 
 ```bash
