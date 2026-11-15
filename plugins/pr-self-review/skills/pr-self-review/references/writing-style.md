@@ -12,7 +12,7 @@ PRに含まれる日本語の文章を修正するときは、以下に従う。
 - 略称を用いず正式名称で表記する。単純に表記揺れを防ぐ目的のほか、読み手が推測せず一意に解釈できるようにする。
   - 例：AZ名は「1a」と略さず`ap-northeast-1a`と書く。`Open Search`と分けず公式表記の`OpenSearch`に従う。
 - 金額はMarkdownで通貨記号`$`を使わず`USD`表記に統一する（例：「USD 1,285」）。`$`はMarkdownや数式表示で崩れるため。
-- 日本語表記のスタイルはtextlint-rule-preset-JTF-styleの指摘を参考に修正する。実行方法は以下の通り。
+- 日本語表記のスタイルはtextlint-rule-preset-JTF-styleの指摘を参考に修正する。実行方法は以下の通り。`npx`を使えない環境では飛ばす。
 
 ```bash
 npx -p textlint -p textlint-rule-preset-jtf-style textlint --no-textlintrc --preset jtf-style (document_path)

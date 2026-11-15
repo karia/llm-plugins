@@ -15,3 +15,4 @@ The skill is self-contained. The inspection criteria, the third-party review pro
 - GitHub CLI authenticated with permission to edit the pull request and push to its branch
 - For the third-party review, a host that can start a subagent, or [Herdr](https://herdr.dev/) with another coding agent installed
 - For the prompt audit, the `claude-api` skill; the step is skipped where it is not available
+- For the Japanese style check, `npx` to run textlint; the check is skipped where it is not available
