@@ -136,7 +136,7 @@ todoファイルでは`pick`と`fixup`を使う。メッセージを変えるcom
 
 rebaseがconflictなどで止まった場合は、`git rebase --abort`で元に戻し、まとめずにpushへ進む。まとめられなかった旨を報告に記す。
 
-rebaseの後、内容が変わっていないことを確かめる。出力が空であれば正しい。
+rebaseの後、内容が変わっていないことを確かめる。出力が空であれば正しい。空でなければ`git reset --hard <rebase前のHEAD>`で戻し、まとめずにpushへ進む。まとめられなかった旨を報告に記す。
 
 ```bash
 git diff <rebase前のHEAD> HEAD
