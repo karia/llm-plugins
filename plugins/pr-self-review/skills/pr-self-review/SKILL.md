@@ -155,7 +155,7 @@ git diff <rebase前のHEAD> HEAD
 
 ### 3. 開始時の状態に戻す
 
-- 準備でdraftに戻していた場合は、`gh pr ready <PR番号>`で元の状態に戻す。
+- 準備でdraftに戻していた場合は、`gh pr ready <PR番号>`で元の状態に戻す。pushが拒否された場合はdraftのまま残し、報告に記す。修正がremoteに無いままマージされるのを防ぐため。
 - 準備で退避した変更があれば、`git stash apply <SHA>`で戻す。その後`git stash list --format='%H %gd'`で控えたSHAの番号を確かめ、`git stash drop stash@{<番号>}`で消す。applyが失敗した場合は、エントリを消さずに残し、SHAとともに報告する。
 - 準備で作業ツリーを新しく作った場合は、消さずに残し、その場所を報告に記す。
 
