@@ -142,7 +142,7 @@ git diff <rebase前のHEAD> HEAD
 - 対象リポジトリや実行環境にpush前の確認手順があれば、それに従う。
 - `git push`でpushする。まとめたのは未pushのcommitだけなので、通常のpushで通る。
 - 準備でdraftに戻していた場合は、`gh pr ready <PR番号>`で元の状態に戻す。
-- 準備で退避した変更があれば、`git stash apply <SHA>`で戻し、当該エントリを消す。
+- 準備で退避した変更があれば、`git stash apply <SHA>`で戻す。その後`git stash list --format='%H %gd'`で控えたSHAの番号を確かめ、`git stash drop stash@{<番号>}`で消す。
 
 ### 3. 報告する
 
