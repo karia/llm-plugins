@@ -129,6 +129,8 @@ GIT_SEQUENCE_EDITOR="cp <todoファイルのパス>" git rebase -i <開始commit
 
 todoファイルでは`pick`と`fixup`を使う。メッセージを変えるcommitは、`pick`の次の行に`exec git commit --amend -m "<新しいメッセージ>"`を置く。
 
+rebaseがconflictなどで止まった場合は、`git rebase --abort`で元に戻し、まとめずにpushへ進む。まとめられなかった旨を報告に記す。
+
 rebaseの後、内容が変わっていないことを確かめる。出力が空であれば正しい。
 
 ```bash
