@@ -52,7 +52,7 @@
     {
       "name": "pr-self-review",
       "source": "./plugins/pr-self-review",
-      "description": "Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until none remain, then tidy the fix commits and push.",
+      "description": "Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until a round needs no fix, then tidy the fix commits and push.",
       "category": "development",
       "keywords": ["code-review", "pull-request", "subagent"]
     }

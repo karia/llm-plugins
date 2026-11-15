@@ -14,7 +14,7 @@ Each plugin ships a single skill. The skills themselves are written in Japanese,
 | `tech-writing-style` | Writing norms for Japanese technical documents: phrasing, notation, structure, tables, headings, and how to place links. |
 | `codex-delegate` | Delegate implementation or research to Codex CLI in a Herdr pane, then verify the result and resume after usage limits. |
 | `renovate-triage` | Triage Renovate dependency updates against the deployed runtime, then approve and merge compatible pull requests one at a time. |
-| `pr-self-review` | Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until none remain, then tidy the fix commits and push. |
+| `pr-self-review` | Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until a round needs no fix, then tidy the fix commits and push. |
 
 ## Install
 
