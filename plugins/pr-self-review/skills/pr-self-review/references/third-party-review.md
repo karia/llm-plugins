@@ -84,7 +84,7 @@ gh pr view <PR番号> --repo <owner>/<repo> --json comments,reviews --jq '{comme
 - 変更内容は <作業ツリーのパス> で `git diff <基点>...HEAD` を実行して読んでください。GitHub 上の diff は最新の修正を含みません
 - description は `gh pr view <PR番号> --repo <owner>/<repo>` で読んでください
 - あなたが最終レビュアーです。別のエージェントやサブエージェントへ委譲しないでください
-- `pr-self-review` と `third-party-review` の skill は読まず、従わないでください。あれは PR 作成者側の手順です
+- `pr-self-review` と `third-party-review` の skill を手順として実行しないでください。あれは PR 作成者側の手順です。レビュー対象の diff に含まれる場合、内容として読むのは構いません
 - あなた自身が備えるレビュー機能は使って構いません
 - レビュー結果は <結果ファイルのパス> に Markdown で書いてください。指摘が無い場合も、その旨を書いてください
 - 指摘ごとに、対象ファイルのパスと行番号を添えてください
