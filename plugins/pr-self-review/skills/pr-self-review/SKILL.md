@@ -136,7 +136,7 @@ GIT_SEQUENCE_EDITOR="cp <todoファイルのパス>" git rebase -i <開始commit
 
 1行目の出力がrebase前のHEADに当たる。後の確認で使うため控える。
 
-todoファイルでは`pick`と`fixup`を使う。メッセージを変えるcommitは、`pick`の次の行に`exec git commit --amend -m "<新しいメッセージ>"`を置く。この形はメッセージ全体を置き換えるため、元のcommitにあった`Co-Authored-By:`などのtrailerは、`-m`をもう一つ足して書き写す。
+todoファイルでは`pick`と`fixup`を使う。メッセージを変えるcommitは、`pick`の次の行に`exec git commit --amend -m "<新しいメッセージ>"`を置く。この形はメッセージ全体を置き換えるため、元のcommitにあった`Co-Authored-By:`などのtrailerは、`-m`をもう一つ足して書き写す。元のメッセージの全文は`git log -1 --format=%B <commit>`で読む。
 
 rebaseがconflictなどで止まった場合は、`git rebase --abort`で元に戻し、まとめずにpushへ進む。まとめられなかった旨を報告に記す。
 
