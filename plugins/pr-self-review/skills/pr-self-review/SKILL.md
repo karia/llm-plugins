@@ -115,7 +115,7 @@ PRの差分にLLM向けのプロンプトが含まれる場合だけ実行する
 
 ### 1. commitをまとめる
 
-未pushのcommitが無い場合は、commitをまとめる作業とpushを飛ばす。
+未pushのcommitが無い場合は、commitをまとめる作業と`git push`の実行を飛ばし、「3. 開始時の状態に戻す」へ進む。
 
 `git log --reverse --format='%h %s' <開始commit>..HEAD`で未pushの全commitを読み、次の方針でまとめ方を決める。
 
@@ -146,10 +146,12 @@ git diff <rebase前のHEAD> HEAD
 
 - 対象リポジトリや実行環境にpush前の確認手順があれば、それに従う。
 - `git push`でpushする。まとめたのは未pushのcommitだけなので、通常のpushで通る。
+### 3. 開始時の状態に戻す
+
 - 準備でdraftに戻していた場合は、`gh pr ready <PR番号>`で元の状態に戻す。
 - 準備で退避した変更があれば、`git stash apply <SHA>`で戻す。その後`git stash list --format='%H %gd'`で控えたSHAの番号を確かめ、`git stash drop stash@{<番号>}`で消す。applyが失敗した場合は、エントリを消さずに残し、SHAとともに報告する。
 
-### 3. 報告する
+### 4. 報告する
 
 次の内容を依頼者へ伝えて終わりにする。
 
