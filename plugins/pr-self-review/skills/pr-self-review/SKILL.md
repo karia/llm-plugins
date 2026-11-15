@@ -35,7 +35,7 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
   ```
 
 - PRのhead branchをcheckoutした作業ツリーへ移動する。作業ツリーが無ければ、`git fetch`の後に`git worktree add <パス> <head branch>`で新しく作り、そこへ移動する。いまいる作業ツリーのbranchは切り替えない。
-- 未コミット変更があれば、名前を付けて退避する。`git stash push -u -m "pr-self-review <PR番号>"`を使い、`git stash list --format='%H %gs'`で当該エントリのSHAを控える。完了処理で`git stash apply <SHA>`により戻す。
+- 未コミット変更があれば、名前を付けて退避する。`git stash push -u -m "pr-self-review <PR番号> <開始時刻>"`を使い、`git stash list --format='%H %gs'`で当該エントリのSHAを控える。完了処理で`git stash apply <SHA>`により戻す。
 - `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git merge --ff-only origin/<head branch>`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。localとremoteが分岐していれば、「3. 開始時の状態に戻す」の手順で退避した変更を戻したうえで、その旨を伝えて終了する。分岐したままではpushできないため。
 - 3つのcommitを控える。
   - **開始commit**：`git rev-parse origin/<head branch>`の値。push済みの先頭に当たり、完了処理のrebaseの起点にする。
