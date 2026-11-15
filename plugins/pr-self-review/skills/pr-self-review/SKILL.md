@@ -23,15 +23,15 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
 - 指摘を直すかどうかは自分で決める。判定は「指摘の判定」に従う。
 - 修正は1件につき1commitにする。pushは完了処理まで行わない。
 - 文章を直すときは`references/writing-style.md`に従う。
-- 進められなくなる障害に当たったら、そのステップを飛ばして先へ進み、完了時に報告する。PRが見つからない場合と、localとremoteが分岐している場合は、その旨を伝えて終了する。
+- 進められなくなる障害に当たったら、そのステップを飛ばして先へ進み、完了時に報告する。PRが見つからない場合、PRがopenでない場合、localとremoteが分岐している場合は、その旨を伝えて終了する。
 
 ## (0) 準備
 
 - 対象のPRを特定する。引数にPR番号かURLがあればそれを使い、無ければ現在のbranchのPRを`gh pr view`で探す。
-- PRの情報を控える。
+- PRの情報を控える。`state`が`OPEN`でなければ終了する。
 
   ```bash
-  gh pr view <PR番号> --json number,url,isDraft,baseRefName,headRefName
+  gh pr view <PR番号> --json number,url,state,isDraft,baseRefName,headRefName
   ```
 
 - PRのhead branchをcheckoutした作業ツリーへ移動する。作業ツリーが無ければ、`git fetch`の後に`git worktree add <パス> <head branch>`で新しく作り、そこへ移動する。いまいる作業ツリーのbranchは切り替えない。
