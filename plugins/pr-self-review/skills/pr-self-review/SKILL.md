@@ -147,7 +147,7 @@ git diff <rebase前のHEAD> HEAD
 ### 2. pushする
 
 - 対象リポジトリや実行環境にpush前の確認手順があれば、それに従う。
-- `git push origin HEAD:<head branch>`でpushする。まとめたのは未pushのcommitだけなので、通常のpushで通る。
+- `git push origin HEAD:<head branch>`でpushする。まとめたのは未pushのcommitだけなので、通常のpushで通る。レビュー中にremoteが進んでpushが拒否された場合は、強制pushをせず、commitをlocalに残して報告する。
 
 ### 3. 開始時の状態に戻す
 
