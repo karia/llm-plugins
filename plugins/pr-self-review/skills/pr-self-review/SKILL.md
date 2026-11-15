@@ -146,6 +146,7 @@ git diff <rebase前のHEAD> HEAD
 
 - 対象リポジトリや実行環境にpush前の確認手順があれば、それに従う。
 - `git push`でpushする。まとめたのは未pushのcommitだけなので、通常のpushで通る。
+
 ### 3. 開始時の状態に戻す
 
 - 準備でdraftに戻していた場合は、`gh pr ready <PR番号>`で元の状態に戻す。
