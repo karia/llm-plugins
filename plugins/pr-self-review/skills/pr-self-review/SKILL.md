@@ -34,9 +34,9 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
   gh pr view <PR番号> --json number,url,isDraft,baseRefName,headRefName
   ```
 
-- PRのhead branchをcheckoutした作業ツリーへ移動する。作業ツリーが無ければ`gh pr checkout <PR番号>`でcheckoutする。
+- PRのhead branchをcheckoutした作業ツリーへ移動する。作業ツリーが無ければ`git worktree add <パス> <head branch>`で新しく作り、そこへ移動する。いまいる作業ツリーのbranchは切り替えない。
 - 未コミット変更があれば、名前を付けて退避する。`git stash push -u -m "pr-self-review <PR番号>"`を使い、`git stash list --format='%H %gs'`で当該エントリのSHAを控える。完了処理で`git stash apply <SHA>`により戻す。
-- `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git pull --ff-only`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。localとremoteが分岐していれば、その旨を伝えて終了する。分岐したままではpushできないため。
+- `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git pull --ff-only`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。localとremoteが分岐していれば、退避した変更を戻したうえで、その旨を伝えて終了する。分岐したままではpushできないため。
 - 2つのcommitを控える。
   - **開始commit**：`git rev-parse origin/<head branch>`の値。push済みの先頭に当たり、これより後のcommitを完了処理でまとめる。
   - **基点**：`git merge-base HEAD origin/<base branch>`の値。PRの差分はここからHEADまでになる。
