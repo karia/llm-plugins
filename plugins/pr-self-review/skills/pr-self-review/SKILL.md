@@ -115,6 +115,8 @@ PRの差分にLLM向けのプロンプトが含まれる場合だけ実行する
 
 ### 1. commitをまとめる
 
+未pushのcommitが無い場合は、commitをまとめる作業とpushを飛ばす。
+
 `git log --reverse --format='%h %s' <開始commit>..HEAD`で未pushの全commitを読み、次の方針でまとめ方を決める。
 
 - 同じ箇所を重ねて直したcommitや、同じ主題のcommitは一つにまとめる。
@@ -127,6 +129,8 @@ rebaseは対話エディタを使わずに行う。まとめ方を書いたtodo�
 git rev-parse HEAD
 GIT_SEQUENCE_EDITOR="cp <todoファイルのパス>" git rebase -i <開始commit>
 ```
+
+1行目の出力がrebase前のHEADに当たる。後の確認で使うため控える。
 
 todoファイルでは`pick`と`fixup`を使う。メッセージを変えるcommitは、`pick`の次の行に`exec git commit --amend -m "<新しいメッセージ>"`を置く。
 
