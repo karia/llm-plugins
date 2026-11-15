@@ -23,7 +23,7 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
 - 指摘を直すかどうかは自分で決める。判定は「指摘の判定」に従う。
 - 修正は1件につき1commitにする。pushは完了処理まで行わない。
 - 文章を直すときは`references/writing-style.md`に従う。
-- 進められなくなる障害に当たったら、そのステップを飛ばして先へ進み、完了時に報告する。PRが見つからない場合だけは、その旨を伝えて終了する。
+- 進められなくなる障害に当たったら、そのステップを飛ばして先へ進み、完了時に報告する。PRが見つからない場合と、localとremoteが分岐している場合は、その旨を伝えて終了する。
 
 ## (0) 準備
 
@@ -36,7 +36,7 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
 
 - PRのhead branchをcheckoutした作業ツリーへ移動する。
 - 未コミット変更があれば、名前を付けて退避する。`git stash push -u -m "pr-self-review <PR番号>"`を使い、`git stash list --format='%H %gs'`で当該エントリのSHAを控える。完了処理で`git stash apply <SHA>`により戻す。
-- `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git pull --ff-only`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。
+- `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git pull --ff-only`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。localとremoteが分岐していれば、その旨を伝えて終了する。分岐したままではpushできないため。
 - 2つのcommitを控える。
   - **開始commit**：`git rev-parse origin/<head branch>`の値。push済みの先頭に当たり、これより後のcommitを完了処理でまとめる。
   - **基点**：`git merge-base HEAD origin/<base branch>`の値。PRの差分はここからHEADまでになる。
