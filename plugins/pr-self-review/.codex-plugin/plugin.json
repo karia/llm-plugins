@@ -1,7 +1,7 @@
 {
   "name": "pr-self-review",
   "version": "0.1.0",
-  "description": "Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until none remain, then squash and push.",
+  "description": "Review your own pull request in a loop of artifact inspection, third-party review, and prompt audit, fixing findings without asking until none remain, then tidy the fix commits and push.",
   "author": {
     "name": "karia"
   },
@@ -13,7 +13,7 @@
   "interface": {
     "displayName": "PR Self Review",
     "shortDescription": "Review and fix your own pull request until nothing is left to fix.",
-    "longDescription": "Runs a pull request through an inspection for leftovers of the work that produced it, a review by an agent that never saw the implementation, and a prompt audit when the diff contains prompts. Findings are judged and fixed one commit at a time without questions, the loop repeats until a round produces no fix, and the fix commits are squashed and pushed once.",
+    "longDescription": "Runs a pull request through an inspection for leftovers of the work that produced it, a review by an agent that never saw the implementation, and a prompt audit when the diff contains prompts. Findings are judged and fixed one commit at a time without questions, the loop repeats until a round produces no fix, and the fix commits are tidied with a rebase and pushed once.",
     "developerName": "karia",
     "category": "Developer Tool",
     "websiteURL": "https://github.com/karia/llm-plugins"
