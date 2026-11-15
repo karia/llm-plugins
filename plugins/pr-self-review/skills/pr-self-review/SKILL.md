@@ -38,7 +38,7 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
 - 未コミット変更があれば、名前を付けて退避する。`git stash push -u -m "pr-self-review <PR番号>"`を使い、`git stash list --format='%H %gs'`で当該エントリのSHAを控える。完了処理で`git stash apply <SHA>`により戻す。
 - `git fetch`の後、HEADが`origin/<head branch>`と一致するかを確かめる。remoteが先行していれば`git pull --ff-only`で取り込む。localが先行していれば、その未pushのcommitもレビュー対象に含める。
 - 2つのcommitを控える。
-  - **開始commit**：`git rev-parse HEAD`の値。これより後のcommitがレビュー中の修正になる。
+  - **開始commit**：`git rev-parse origin/<head branch>`の値。push済みの先頭に当たり、これより後のcommitを完了処理でまとめる。
   - **基点**：`git merge-base HEAD origin/<base branch>`の値。PRの差分はここからHEADまでになる。
 - PRがready for reviewなら`gh pr ready --undo <PR番号>`でdraftに戻す。レビュー対応中にマージされるのを防ぐため。完了処理で元の状態に戻す。
 - 作業用ディレクトリを`mktemp -d`で作る。レビュー結果と持ち越す指摘の記録をここに置く。
@@ -50,6 +50,7 @@ description: 自分が書いたPRを、依頼者への質問を挟まずにセ�
 - diffで追加または変更された行は、ファイルを直してcommitする。
 - titleとdescriptionは`gh pr edit`で直す。commitは発生しないが、修正1件として数える。
 - push済みのcommitのメッセージに残る名残は直さず、持ち越す指摘として記録する。直すにはpush済みの履歴を書き換えることになるため。
+- 未pushのcommitのメッセージに残る名残は記録しておき、完了処理のrebaseで直す。
 
 ## (2) 第三者レビュー
 
@@ -114,7 +115,7 @@ PRの差分にLLM向けのプロンプトが含まれる場合だけ実行する
 
 ### 1. commitをまとめる
 
-`git log --reverse --format='%h %s' <開始commit>..HEAD`でレビュー中の全commitを読み、次の方針でまとめ方を決める。
+`git log --reverse --format='%h %s' <開始commit>..HEAD`で未pushの全commitを読み、次の方針でまとめ方を決める。
 
 - 同じ箇所を重ねて直したcommitや、同じ主題のcommitは一つにまとめる。
 - 主題が異なる修正は別のcommitのまま残す。
