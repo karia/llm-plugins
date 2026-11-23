@@ -1,6 +1,8 @@
 # third-party-review
 
-A review carried out in the session that wrote the code is not a review. It inherits every assumption the implementation was built on, which is exactly what a reviewer is there to question. So the reviewer starts from nothing: it gets the repository name and the pull request number, and reads the diff and the description the way anyone else would.
+A review carried out in the session that wrote the code is not a review. It inherits every assumption the implementation was built on, which is exactly what a reviewer is there to question. So the reviewer gets none of the implementation history: it gets the repository name, the pull request number, and the bar to judge against (what kind of artifact it is, who reads it, and what level it must meet), and reads the diff and the description the way anyone else would.
+
+The reviewer gives a verdict first and lists only problems that should block the merge, at most five, each with how it breaks in normal use and whether it was actually verified. The requesting session does not take findings at face value: it recommends fixing only what it can confirm and what is worth the added text, and a follow-up review checks only the previous problems and regressions.
 
 By default the reviewer is a subagent of the requesting session. An external coding agent is launched only when the requester asks for one.
 
