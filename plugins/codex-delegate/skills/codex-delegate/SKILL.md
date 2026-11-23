@@ -1,6 +1,6 @@
 ---
 name: codex-delegate
-description: Herdrの別paneで動くCodex CLIに実装や調査を委譲するときに使用する。「codexにやらせて」「別paneのcodex --yoloに対応させて」「codexにオフロードして」「codexがリミットで止まったので再開させて」「不要なcodexを閉じて」のような依頼が対象。
+description: Herdrの別tabで動くCodex CLIに実装や調査を委譲するときに使用する。「codexにやらせて」「別paneのcodex --yoloに対応させて」「codexにオフロードして」「codexがリミットで止まったので再開させて」「不要なcodexを閉じて」のような依頼が対象。
 ---
 
 # Codexへの委譲手順
@@ -62,12 +62,16 @@ Write this file last.
 | 依頼 | 起動オプション | `<commitの扱い>` | commitの担当 |
 | --- | --- | --- | --- |
 | `--yolo`の指定なし | `--sandbox workspace-write --add-dir <一時ディレクトリ>` | `Leave changes uncommitted.` | 指示役 |
-| 依頼者が`--yolo`を指定 | `--yolo` | `Commit locally in small steps.` | Codex |
+| 依頼者が`--yolo`を指定 | `--profile yolo` | `Commit locally in small steps.` | Codex |
 
-`--yolo`は承認とサンドボックスをともに外すため、依頼者が明示したときだけ使う。`workspace-write`ではworktreeのgitメタデータが書き込み範囲の外にあり、commitのたびに承認を求められるので、commitを指示役が受け持つ。
+`--yolo`は承認とサンドボックスをともに外すため、依頼者が明示したときだけ使う。依頼者が明示したときは必ず`--yolo`の行を使い、自分の判断で`workspace-write`へ切り替えない。起動を拒否されたときも別の起動オプションで起動し直さず、依頼者に報告する。
+
+`--yolo`の指定には、`--yolo`フラグではなく`--profile yolo`を使う。`$CODEX_HOME/yolo.config.toml`（既定は`~/.codex/yolo.config.toml`）に`approval_policy = "never"`と`sandbox_mode = "danger-full-access"`を書いたプロファイルで、`--yolo`と同じ挙動になる。存在しないプロファイルを指定してもCodexはエラーにせず通常の設定で起動するため、起動前に`test -f "${CODEX_HOME:-$HOME/.codex}/yolo.config.toml"`で存在を確かめる。ファイルがなければ`--yolo`フラグで起動する。`workspace-write`ではworktreeのgitメタデータが書き込み範囲の外にあり、commitのたびに承認を求められるので、commitを指示役が受け持つ。
 
 ```bash
-pane=$(herdr pane split --current --direction right --cwd <作業ディレクトリ> --no-focus | jq -r .result.pane.pane_id) &&
+tab=$(herdr tab create --cwd <作業ディレクトリ> --label <名前> --no-focus) &&
+pane=$(echo "$tab" | jq -r .result.root_pane.pane_id) &&
+echo "$tab" | jq -r .result.tab.tab_id &&
 herdr agent start <名前> --kind codex --pane "$pane" --timeout 60000 -- <起動オプション>
 ```
 
@@ -78,7 +82,7 @@ herdr agent prompt <名前> "Read <タスクファイル> and carry out the task
 ```
 
 - 名前はタスクが分かるものにする（例：`issue52`）。
-- 既存のpaneが細いときは、`--direction down`で分割する。
+- 出力されたtab IDを(8)で使うため控える。
 
 ### 起動時の問題と対応
 
@@ -151,12 +155,12 @@ herdr agent wait <名前> --timeout 3600000; herdr agent get <名前> | jq -r .r
 
 上限で再び止まったら、この手順を繰り返す。依頼者が別の指示を出した場合は、それに従う。
 
-## (8) paneを閉じる
+## (8) tabを閉じる
 
 実装のタスクは、対象のPRがマージされたとき、または依頼者に指示されたときに閉じる。それまでは、レビュー指摘の修正に使うため残す。調査だけのタスクは、報告ファイルを確かめた後に閉じる。
 
 1. `git status --short`で、作業ディレクトリに未コミットの変更がないことを確かめる。残っていれば依頼者に確認する。
-2. `herdr pane close <pane ID>`でpaneを閉じる。pane IDは起動時の値を使う。エージェントが稼働中なら、`herdr agent get <名前> | jq -r .result.agent.pane_id`でも取得できる。
+2. `herdr tab close <tab ID>`でtabを閉じる。tab IDは起動時の値を使う。控えていなければ、`herdr pane get <pane ID> | jq -r .result.pane.tab_id`で取得する。
 
 worktreeの削除は`merged-branch-cleanup`の手順で行う。
 

@@ -2,9 +2,9 @@
 
 Codex CLI stops in ways that look alike from outside: an `idle` pane can mean the work is finished, a question is waiting, or a usage limit was hit. The steps here make completion observable by requiring a report file, and the orchestrator re-runs the verification commands itself before accepting that report.
 
-The skill covers starting Codex in a sibling Herdr pane, handing it a task file, waiting without polling, resuming after a usage limit, sending review findings back to the same agent, and closing the pane afterwards.
+The skill covers starting Codex in a separate Herdr tab, handing it a task file, waiting without polling, resuming after a usage limit, sending review findings back to the same agent, and closing the pane afterwards.
 
-Codex starts in `workspace-write` with the orchestrator committing its changes. `--yolo` removes both approvals and the sandbox, so it is used only when explicitly requested.
+Codex starts in `workspace-write` with the orchestrator committing its changes. `--yolo` removes both approvals and the sandbox, so it is used only when explicitly requested. It is passed as `--profile yolo`, which reads `$CODEX_HOME/yolo.config.toml`; the skill falls back to `--yolo` when that file is missing.
 
 ## Requirements
 
