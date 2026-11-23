@@ -1,13 +1,13 @@
 ---
 name: codex-delegate
-description: Herdrの別paneで動くCodex CLIに実装や調査を委譲するときに使用する。「codexにやらせて」「別paneのcodex --yoloに対応させて」「codexにオフロードして」「codexがリミットで止まったので再開させて」「不要なcodexを閉じて」のような依頼が対象。
+description: Herdrの別tabで動くCodex CLIに実装や調査を委譲するときに使用する。「codexにやらせて」「別tabのcodexに対応させて」「codexにオフロードして」「codexがリミットで止まったので再開させて」「不要なcodexを閉じて」のような依頼が対象。
 ---
 
 # Codexへの委譲手順
 
 自分は指示役に回り、実作業をCodex CLIに任せる。指示役の文脈を節約するため、Codexの画面全体は読まず、完了報告ファイルと差分の要約で結果を確かめる。
 
-コマンドの構文は、インストール済みの`herdr agent`と`herdr pane`のヘルプを正とする。
+コマンドの構文は、インストール済みの`herdr agent`、`herdr pane`、`herdr tab`のヘルプを正とする。
 
 ## (1) 委譲先と作業場所を決める
 
@@ -15,7 +15,7 @@ description: Herdrの別paneで動くCodex CLIに実装や調査を委譲する�
 2. `herdr agent list`で稼働中のCodexを確かめる。依頼者が用意したエージェントを使うときは、(3)の起動を省き、次を先に確かめる。
    - 作業ディレクトリが合っていて、状態が`idle`か`done`であること。
    - エージェントの名前。なければ、以降の`<名前>`にpane IDを使う。
-   - 起動オプション。確かめられなければ、`<commitの扱い>`を選ぶ前に依頼者に確認する。
+   - 起動オプションで承認やサンドボックスを有効にしていないこと。確かめられなければ依頼者に確認する。
 3. 作業ディレクトリを決める。リポジトリを変更するタスクには、タスクごとのworktreeを`pr-flow`の手順で先に作る。並行するタスク同士でworktreeを共有しない。
 4. 変更の基点として、作業ディレクトリで`git rev-parse HEAD`を実行し、結果を控える。
 5. タスクごとの一時ディレクトリをリポジトリの外に作る。タスクファイルと報告ファイルをここに置く。
@@ -55,20 +55,14 @@ Write this file last.
 
 ## (3) 起動して指示する
 
-起動オプションとcommitの担当は、依頼に応じて次の表から選ぶ。
+Codexは起動オプションを付けずに起動する。依頼者のCodex設定（`~/.codex/config.toml`）が`approval_policy = "never"`と`sandbox_mode = "danger-full-access"`を既定にしており、承認とサンドボックスがともに外れた状態で動く前提である。承認待ちで止まらないため、commitはCodexが受け持つ。`<commitの扱い>`には`Commit locally in small steps.`を書く。
 
-### 依頼ごとの起動オプション
-
-| 依頼 | 起動オプション | `<commitの扱い>` | commitの担当 |
-| --- | --- | --- | --- |
-| `--yolo`の指定なし | `--sandbox workspace-write --add-dir <一時ディレクトリ>` | `Leave changes uncommitted.` | 指示役 |
-| 依頼者が`--yolo`を指定 | `--yolo` | `Commit locally in small steps.` | Codex |
-
-`--yolo`は承認とサンドボックスをともに外すため、依頼者が明示したときだけ使う。`workspace-write`ではworktreeのgitメタデータが書き込み範囲の外にあり、commitのたびに承認を求められるので、commitを指示役が受け持つ。
+起動がハーネスの権限確認で拒否されたときは、別のオプションや別の手段で起動し直さず、依頼者に報告する。
 
 ```bash
-pane=$(herdr pane split --current --direction right --cwd <作業ディレクトリ> --no-focus | jq -r .result.pane.pane_id) &&
-herdr agent start <名前> --kind codex --pane "$pane" --timeout 60000 -- <起動オプション>
+tab=$(herdr tab create --cwd <作業ディレクトリ> --label <名前> --no-focus) &&
+echo "$tab" | jq -r '.result.tab.tab_id, .result.root_pane.pane_id' &&
+herdr agent start <名前> --kind codex --pane "$(echo "$tab" | jq -r .result.root_pane.pane_id)" --timeout 60000
 ```
 
 `agent_status`が`idle`で返ったら指示を送る。
@@ -78,7 +72,7 @@ herdr agent prompt <名前> "Read <タスクファイル> and carry out the task
 ```
 
 - 名前はタスクが分かるものにする（例：`issue52`）。
-- 既存のpaneが細いときは、`--direction down`で分割する。
+- 出力されたtab IDとpane IDを控える。(5)と(8)で使う。
 
 ### 起動時の問題と対応
 
@@ -128,7 +122,7 @@ herdr agent wait <名前> --timeout 3600000; herdr agent get <名前> | jq -r .r
 作業ディレクトリで実行する。調査だけのタスクは手順1だけでよい。
 
 1. 報告ファイルを読む。`Open questions`があれば、自分で解決するか依頼者に確認する。
-2. `git status --short`と`git diff --stat <基点>`で、変更がScopeに収まっていることを確かめる。Codexがcommitを担当するときは、未コミットの変更が残っていないことも確かめる。
+2. `git status --short`と`git diff --stat <基点>`で、変更がScopeに収まっていることを確かめる。未コミットの変更が残っていないことも確かめる。
 3. Verifyのコマンドを指示役が自分で実行する。報告の記載だけで成功と判断しない。
 4. 手順2か3で問題が見つかったら、同じエージェントへ修正を指示し、(4)へ戻る。文脈を持つエージェントのほうが、新しいエージェントより説明が少なく済むため。
 
@@ -137,7 +131,7 @@ herdr agent wait <名前> --timeout 3600000; herdr agent get <名前> | jq -r .r
    ```
 
 5. レビューが必要なら`third-party-review`の手順で実施する。指摘の修正は手順4の形で指示する。
-6. 指示役がcommitを担当するときはここでcommitする。pushとPR作成は`pr-flow`の手順で行う。
+6. pushとPR作成は`pr-flow`の手順で行う。
 
 ## (7) 利用上限から再開する
 
@@ -151,12 +145,12 @@ herdr agent wait <名前> --timeout 3600000; herdr agent get <名前> | jq -r .r
 
 上限で再び止まったら、この手順を繰り返す。依頼者が別の指示を出した場合は、それに従う。
 
-## (8) paneを閉じる
+## (8) tabを閉じる
 
 実装のタスクは、対象のPRがマージされたとき、または依頼者に指示されたときに閉じる。それまでは、レビュー指摘の修正に使うため残す。調査だけのタスクは、報告ファイルを確かめた後に閉じる。
 
 1. `git status --short`で、作業ディレクトリに未コミットの変更がないことを確かめる。残っていれば依頼者に確認する。
-2. `herdr pane close <pane ID>`でpaneを閉じる。pane IDは起動時の値を使う。エージェントが稼働中なら、`herdr agent get <名前> | jq -r .result.agent.pane_id`でも取得できる。
+2. (3)で自分が作ったtabは、`herdr tab close <tab ID>`で閉じる。依頼者が用意したエージェントは、同じtabに依頼者のpaneがあることがあるため、`herdr pane close <pane ID>`でpaneだけを閉じる。IDは起動時に控えた値を使う。エージェントが稼働中なら、pane IDは`herdr agent get <名前> | jq -r .result.agent.pane_id`でも取得できる。
 
 worktreeの削除は`merged-branch-cleanup`の手順で行う。
 
